@@ -121,37 +121,34 @@
             <h2>Schedule Your Free Consultation</h2>
             <p style="color:#cbd5e1;margin-bottom:20px;">Fill in your details and we'll get back to you within 24 hours</p>
             <form onsubmit="handleSubmit(event)">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Your Full Name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+91 9XXXXXXXXX" required>
-            </div>
-            <div class="form-group">
-                <label for="service">Which service interests you?</label>
-                <select id="service" name="service" required>
-                    <option value="">Select a service</option>
-                    <option value="Professional Resume">Professional Resume</option>
-                    <option value="LinkedIn Optimization">LinkedIn Optimization</option>
-                    <option value="Naukri.com Profile">Naukri.com Profile</option>
-                    <option value="GitHub Portfolio">GitHub Portfolio</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message">Tell us about your goals</label>
-                <textarea id="message" name="message" placeholder="Share your career goals and what you're looking to achieve..." rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-large" style="width:100%;">
-                Request Consultation
-            </button>
-        </form>
-
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 9XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Which service interests you?</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="Professional Resume">Professional Resume</option>
+                        <option value="LinkedIn Optimization">LinkedIn Optimization</option>
+                        <option value="Naukri.com Profile">Naukri.com Profile</option>
+                        <option value="GitHub Portfolio">GitHub Portfolio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your goals</label>
+                    <textarea id="message" name="message" placeholder="Share your career goals and what you're looking to achieve..." rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" style="width:100%;">Request Consultation</button>
+            </form>
         </div>
     </div>
 
@@ -174,17 +171,46 @@
             document.getElementById('contactModal').style.display = 'none';
         }
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').value;
 
-            alert(`Thank you ${name}!\n\nYour consultation request has been received.\n\nService: ${service}\nWe'll contact you at ${email} within 24 hours.`);
+            const form = event.target;
+            const formData = new FormData(form);
 
-            closeContactModal();
-            document.querySelector('form').reset();
+            // IMPORTANT: Replace 'YOUR_ACCESS_KEY_HERE' with your actual Web3Forms Access Key
+            formData.append('access_key', '5a9a51f2-b47d-47aa-a7a8-8e880d5f7874');
+
+            // Optional: Add subject line for the email
+            formData.append('subject', 'New Consultation Request from Versolve Website');
+
+            // Optional: Add redirect URL after submission (you can customize this)
+            formData.append('redirect', 'https://web3forms.com/success');
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const service = formData.get('service');
+
+                    alert(`Thank you ${name}!\n\nYour consultation request has been received.\n\nService: ${service}\nWe'll contact you at ${email} within 24 hours.`);
+
+                    closeContactModal();
+                    form.reset();
+                } else {
+                    console.error('Error:', data);
+                    alert('Oops! Something went wrong. Please try again or contact us directly.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Oops! Something went wrong. Please try again or contact us directly.');
+            }
         }
 
         window.onclick = function(event) {
