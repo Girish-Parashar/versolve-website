@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versolve Technologies - Professional Career Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <span class="logo-icon">⚡</span>
+                <h1 class="brand-name">Versolve</h1>
+                <span class="brand-subtitle">Technologies</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#services" class="nav-link">Services</a>
+                <button onclick="openContactModal()" class="nav-link nav-cta">Get Started</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-content">
+                <h2 class="hero-subtitle">Transform Your Career</h2>
+                <h1 class="hero-title">Professional Development Services</h1>
+                <p class="hero-description">Expert coaching and career optimization for professionals seeking excellence</p>
+                <button class="btn btn-primary btn-large" onclick="openContactModal()">Start Free Consultation</button>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Clients Served</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">4.9★</span>
+                        <span class="stat-label">Rating</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-decoration">
+                <div class="floating-card card-1"></div>
+                <div class="floating-card card-2"></div>
+                <div class="floating-card card-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Premium Services</h2>
+            <div class="services-container">
+                <div class="service-box">
+                    <div class="service-icon">📄</div>
+                    <h3>Professional Resume</h3>
+                    <p>ATS-optimized resume creation</p>
+                    <span class="service-price">₹7,000</span>
+                    <button class="btn btn-outline" onclick="openServiceModal('Professional Resume', 'ATS-optimized resume creation that increases your chances of getting shortlisted by 3x. Our expert team crafts tailored resumes highlighting your skills and achievements in formats recognized by applicant tracking systems.')">Learn More</button>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">🔗</div>
+                    <h3>LinkedIn Optimization</h3>
+                    <p>Complete profile makeover for recruiters</p>
+                    <span class="service-price">₹1,500</span>
+                    <button class="btn btn-outline" onclick="openServiceModal('LinkedIn Optimization', 'Transform your LinkedIn profile into a powerful recruitment magnet. We optimize your headline, summary, experience sections, and ensure recruiters find you for top opportunities.')">Learn More</button>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">📋</div>
+                    <h3>Naukri.com Profile</h3>
+                    <p>Professional profile optimization</p>
+                    <span class="service-price">₹1,500</span>
+                    <button class="btn btn-outline" onclick="openServiceModal('Naukri.com Profile', 'Get noticed by Indian recruiters with a fully optimized Naukri profile. Enhanced keywords, professional headline, and complete information to attract quality job opportunities.')">Learn More</button>
+                </div>
+                <div class="service-box">
+                    <div class="service-icon">💻</div>
+                    <h3>GitHub Portfolio</h3>
+                    <p>Showcase your best projects</p>
+                    <span class="service-price">₹2,500</span>
+                    <button class="btn btn-outline" onclick="openServiceModal('GitHub Portfolio', 'Build an impressive GitHub portfolio that showcases your technical skills to potential employers and collaborators. We help you organize, document, and present your best coding projects.')">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Ready to Level Up?</h2>
+            <p class="contact-subtitle">Join 500+ professionals who transformed their careers</p>
+            <button class="btn btn-primary btn-large" onclick="openContactModal()">Schedule Free Consultation</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Versolve Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Service Details Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeServiceModal()">&times;</span>
+            <h2 id="modalTitle">Service Details</h2>
+            <p id="modalDescription">Loading...</p>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="openContactModal()">Get This Service</button>
+                <button class="btn btn-outline" onclick="closeServiceModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content modal-lg">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h2>Schedule Your Free Consultation</h2>
+            <p style="color:#cbd5e1;margin-bottom:20px;">Fill in your details and we'll get back to you within 24 hours</p>
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+91 9XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Which service interests you?</label>
+                    <select id="service" required>
+                        <option value="">Select a service</option>
+                        <option value="Professional Resume">Professional Resume</option>
+                        <option value="LinkedIn Optimization">LinkedIn Optimization</option>
+                        <option value="Naukri.com Profile">Naukri.com Profile</option>
+                        <option value="GitHub Portfolio">GitHub Portfolio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your goals</label>
+                    <textarea id="message" placeholder="Share your career goals and what you're looking to achieve..." rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large" style="width:100%;">Request Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openServiceModal(title, description) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('serviceModal').style.display = 'flex';
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+
+            alert(`Thank you ${name}!\n\nYour consultation request has been received.\n\nService: ${service}\nWe'll contact you at ${email} within 24 hours.`);
+
+            closeContactModal();
+            document.querySelector('form').reset();
+        }
+
+        window.onclick = function(event) {
+            const serviceModal = document.getElementById('serviceModal');
+            const contactModal = document.getElementById('contactModal');
+
+            if (event.target == serviceModal) {
+                serviceModal.style.display = 'none';
+            }
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
